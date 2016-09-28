@@ -1,0 +1,28 @@
+﻿（一、第一部分）
+pwd显示当前所在目录
+ls -ah显示当前文件夹下所有文件以及子目录
+cd d:/git进入到某个目录
+mkdir changkongProject在当前目录下创建一个子目录
+git init将当前所在目录变成一个资源库（repository），之后这个文件夹下所有资源都可以被git管理
+git status查看git资源库有什么变动（如添加或删除了什么文件，什么文件被改动了）
+git diff readme.txt查看readme.txt文件哪些地方被改动了（白色是未变的，红色是原先的，绿色是改动后的）
+		（看的是工作区一个文件和版本库(也即分支)中该文件最新版本之间的区别）
+git add readme.txt添加该文件到git资源库，使得git可以进一步管理它
+git commit -m "描述"
+git log查看最近三次的commit操作（即查看commit历史）
+git log --pretty=oneline该参数简化显示的内容，使其只显示一行
+git reflog(查看命令历史，最近都使用了哪些git命令)
+git reset --hard HEAD^恢复文件为之前的版本
+git reset --hard HEAD~100
+git reset --hard HEAD 21356rts(这串数字是commit id中的一部分)
+（二、第二部分）
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+git checkout -- readme.txt
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+git reset HEAD readme.txt
+git checkout -- readme.txt
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考"版本回退"一节，不过前提是没有推送到远程库。
+git reset HEAD^
+或者 git reset HEAD^^
+或者 git reset HEAD~10
+或者 git reset HEAD 234gh(commit id号的一部分)
