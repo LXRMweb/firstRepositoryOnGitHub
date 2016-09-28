@@ -26,3 +26,14 @@ git reset HEAD^
 或者 git reset HEAD^^
 或者 git reset HEAD~10
 或者 git reset HEAD 234gh(commit id号的一部分)
+（三、第三部分，操作git官网远程仓库）
+3.1将本地仓库myFirstGitRepository与GitHub官网远程仓库相关联
+	step1：进入本地仓库文件夹cd d:/git/myFirstGitRepository/
+	step2: 执行以下命令，让step1文件夹下的本地仓库和github官网上自己建立的某个仓库相关联
+	 	git remote add origin git@github.com:LXRMweb/firstRepositoryOnGitHub.git
+					   	  [LXRMweb是账号]   [远程仓库名称(gitHub官网上建立的仓库名称)]
+	step3：执行以下命令，将本地仓库中的内容推送到github官网的远程仓库中
+		git push -u origin master
+	step4：经历了step1-step3之后，可以看到github官网上的仓库和本地的版本仓库已经一致了
+	step5：本地仓库又提交了新的东西之后，直接使用以下命令将master分支的最新修改提交到远程仓库
+		git push origin master
