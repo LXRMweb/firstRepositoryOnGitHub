@@ -38,3 +38,5 @@ git reset HEAD^
 	step4：经历了step1-step3之后，可以看到github官网上的仓库和本地的版本仓库已经一致了
 	step5：本地仓库又提交了新的东西之后，直接使用以下命令将master分支的最新修改提交到远程仓库
 		git push origin master
+
+3.2 git clone git@github.com:LXRMweb/远程仓库名称.git
