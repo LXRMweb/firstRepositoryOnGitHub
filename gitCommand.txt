@@ -38,8 +38,15 @@ git reset HEAD^
 	step4：经历了step1-step3之后，可以看到github官网上的仓库和本地的版本仓库已经一致了
 	step5：本地仓库又提交了新的东西之后，直接使用以下命令将master分支的最新修改提交到远程仓库
 		git push origin master
+		git push origin branchName//也可以向远程仓库推送除了master之外的其他分支
+		git push 远程仓库名称 branchName//远程仓库的默认名称是origin
+
 
 3.2 git clone git@github.com:LXRMweb/远程仓库名称.git
+
+3.3 git remote查看远程仓库信息
+	git remote -v
+
 （四、第四部分，管理仓库分支）
 git branch branchName创建新分支
 git checkout branchName跳转到相应分支
@@ -89,5 +96,7 @@ git log --graph 查看分支合并图
 			git stash apply恢复工作现场，但是stash内容并不删除
 			git stash apply stash@{0}恢复指定的stash
 			git stash pop恢复工作现场，恢复的同时把stash内容也删了
+git branch -d branchName删除分支
+git branch -D branchName强行删除一个没有被合并过的分支（也就是说“直接丢弃”该分支上所添加或修改的东西）
 			
 
