@@ -98,5 +98,57 @@ git log --graph 查看分支合并图
 			git stash pop恢复工作现场，恢复的同时把stash内容也删了
 git branch -d branchName删除分支
 git branch -D branchName强行删除一个没有被合并过的分支（也就是说“直接丢弃”该分支上所添加或修改的东西）
-			
+（拓：多人协作
+	查看远程库信息，使用git remote -v；
+	本地新建的分支如果不推送到远程，对其他人就是不可见的；
+	从本地推送分支，使用git push origin branch-name，如果推送失败(则说明远程仓库的内容比本地版本库的内容还新)，先用git pull抓     取远程的新提交；
+	从远程抓取分支，使用git pull，如果有冲突，要先处理冲突；
+	处理完冲突之后，可以再次git push origin branchName
+	在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；	
+	建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+	）
 
+（五、第五部分 标签管理）
+5.1 什么是标签
+	正常情况下每一个commit对应一个commit id，该id是一串字符串，看起来非常复杂，tag相当于是给每个commit起一个别名
+	每一个tag对应于一次commit
+5.2相关命令
+git tag查看所有标签
+git tag  tagName//给现在所在的分支的最新的一个commit添加标签
+git tag    v1.0     78yd56
+      	[标签名称] [commit id号]
+git tag -a v1.0 -m "version 1.0 released" 78yd56//可以给标签添加描述信息
+git tag -s <tagname> -m "blablabla..."//可以用PGP签名标签；
+git show <tagName>查看你某个标签的具体信息
+git tag -d tagName删除某个标签
+git push origin tagName将本地某个标签推送到远程
+git push origin --tags一次性推送全部尚未推送到远程的本地标签
+（拓：若是标签已经推送到远程，要删除远程标签就会相对麻烦
+	step1：先从本地删除相应标签
+		git tag -d tagName
+	step2:删除远程相应标签
+		git push origin :ref/tags/tagName
+	step3:登录远程仓库，查看相应标签是否已从远程仓库删除）
+
+
+
+（拓：使用git参与一项开源项目
+	step1：如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页					https://github.com/twbs/bootstrap，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，
+	step2:然后，从自己的账号下clone：
+		git clone git@github.com:michaelliao/bootstrap.git
+		一定要从自己的账号下clone仓库，这样你才能推送修改。如果从bootstrap的作者的仓库地址				git@github.com:twbs/bootstrap.git克隆，因为没有权限，你将不能推送修改。
+	step3：如果你想修复bootstrap的一个bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的仓库推送。
+		如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull 				request就不一定了。）
+
+（拓：.gitignore
+	git add -f App.class//由于.gitignore文件的存在，导致App.class无法推送到版本库，使用-f参数就可以强制添加App.class到版本仓	库，而不用受.gitignore的限制
+	git check-ignore -v App.class//检查出到底是因为.gitignore中哪条规则的问题，使得App.class无法被推送到版本库）
+
+（拓：git命令别名
+	git config --global alias.st status
+	git config --global alias.unstage 'reset HEAD'
+	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+		--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用；
+		配置Git的时候，加上--global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。。）
+			
+	
