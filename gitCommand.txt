@@ -147,7 +147,7 @@ git push origin --tags一次性推送全部尚未推送到远程的本地标签
 （拓：git命令别名
 	git config --global alias.st status
 	git config --global alias.unstage 'reset HEAD'
-	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+	git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen	(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 		--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用；
 		配置Git的时候，加上--global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。。）
 			
