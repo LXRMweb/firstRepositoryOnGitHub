@@ -40,3 +40,11 @@ git reset HEAD^
 		git push origin master
 
 3.2 git clone git@github.com:LXRMweb/远程仓库名称.git
+（四、第四部分，管理仓库分支）
+git branch branchName创建新分支
+git checkout branchName跳转到相应分支
+git checkout -b branchName创建并跳转到相应分支
+git branch查看当前分支
+git merge branchName合并目的分支到“当前分支”（例如：当前分支是master时，该命令会将branchName分支合并到master分支上
+再如：当前分支是“secondBranch”时，则会将branchName合并到“secondBranch”分支上）
+
