@@ -45,6 +45,49 @@ git branch branchName创建新分支
 git checkout branchName跳转到相应分支
 git checkout -b branchName创建并跳转到相应分支
 git branch查看当前分支
+（拓：可以在分支上添加文件...）
+（拓：等分支上将一个模块的任务完全完成之后，就可以使用如下命令将该分支上的东西与master分支合并）
+git checkout master先跳转到master分支，使得当前分支是master
 git merge branchName合并目的分支到“当前分支”（例如：当前分支是master时，该命令会将branchName分支合并到master分支上
-再如：当前分支是“secondBranch”时，则会将branchName合并到“secondBranch”分支上）
+					再如：当前分支是“secondBranch”时，则会将branchName合并到“secondBranch”分支上
+					该命令默认使用FastForward合并模式，可以使用如下参数禁用FastForward模式）
+	
+（（（git merge --no-ff -m "commit描述" branchName（使用参数禁用FastForward合并模式）
+
+（拓：该分支上的功能全部完成且已经将工作成果合并到主分支或其他分支之后，就可以将该分支删除了，使用如下命令）
+git branch -d branchName删除对应的分支
+git log --graph 查看分支合并图
+（拓：使用分支进行开发，merge时可能会发生冲突，这种情况下使用git merge <branchName>命令就会报错
+	$ git merge test2
+	Auto-merging aboutFirstBranch.txt
+	CONFLICT (content): Merge conflict in aboutFirstBranch.txt
+	Automatic merge failed; fix conflicts and then commit the result.
+
+	从git bash界面报错信息可知，两个分支的冲突出现在aboutFirstBranch.txt文件，所以解决冲突的办法就是直接打开该文件，将冲突的地	方稍加修改，然后再用
+	git add "冲突的文件"
+	git commit -m "描述"
+	git merge <branchName>即可）
+（拓：分支管理策略
+	一般情况下团队开发时，每个人都拥有自己的分支，自己的模块开发好之后，合并到“Dev分支上”，所有人都将工作提交至Dev分支之后，将	软件的整体测试版本发到master分支，即个人分支---dev分支---master分支）
+（拓：bug分支
+	情景再现：你正做着自己的工作，但是老板突然甩过来一个bug让你修复，告诉你可以先放下手头的工作，修复这个bug的任务比较急
+	你的动作：step1，先将自己的工作保存到一下，
+			git stash保存工作现场
+		step2,创建一个分支，专门用于修复bug
+			git checkout -b bug1
+		step3,修改有bug的文件。。。。
+		step4,将改好bug后的文件保存并提交至bug分支
+			git add...
+			git commit -m ""
+		step5,将"bug分支"合并到目的分支，完成老板交代的任务
+			git checkout 目的分支
+			git merge --no-ff -m "修改bug-001" bug1    
+			git branch -d bug1删除bug分支）
+		step6：经过step5之后，老板交代的修复bug的任务就算是完成了，那么现在可以继续自己原本的工作了
+			git checkout 自己的工作所在的分支
+			git stash list查看自己刚才的工作现场保存到哪里去了
+			git stash apply恢复工作现场，但是stash内容并不删除
+			git stash apply stash@{0}恢复指定的stash
+			git stash pop恢复工作现场，恢复的同时把stash内容也删了
+			
 
